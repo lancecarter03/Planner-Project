@@ -1,12 +1,11 @@
 package com.planner;
 
-import java.util.Scanner;
 import java.awt.*;
-import java.text.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Scanner;
 
-import com.planner.Controller;
-
-import javafx.util.converter.TimeStringConverter;
 
 public class UserView {
     static Scanner scanner = new Scanner(System.in);
@@ -40,8 +39,10 @@ public class UserView {
         System.out.println("This is the main menu");
         System.out.println(" 1     CreateCalendar");
         System.out.println(" 2     Create Task");
-        System.out.println(" 3     Create Category");
-        System.out.println(" 4     Get Weather ");
+        System.out.println(" 3     Edit Task");
+        System.out.println(" 4     Delete Task");
+        System.out.println(" 5     Create Category");
+        System.out.println(" 6     Get Weather ");
         System.out.println(" 0     Exit Program");
         int userChoice = Integer.parseInt(scanner.nextLine());
 
@@ -54,9 +55,17 @@ public class UserView {
                     // create task
                     break;
                 case 3:
-                    // create category
+                    // edit task
                     break;
                 case 4:
+                    System.out.println("What is the name of the task you would like to delete? ");
+                    String deleteChoice = scanner.nextLine();
+                    Controller.deleteTask(deleteChoice);
+                    break;
+                case 5:
+                    // create category
+                    break;
+                case 6:
                     getWeather();
                     break;
                 default:
@@ -65,8 +74,10 @@ public class UserView {
             }
             System.out.println(" 1     CreateCalendar");
             System.out.println(" 2     Create Task");
-            System.out.println(" 3     Create Category");
-            System.out.println(" 4     Get Weather ");
+            System.out.println(" 3     Edit Task");
+            System.out.println(" 4     Delete Task");
+            System.out.println(" 5     Create Category");
+            System.out.println(" 6     Get Weather ");
             System.out.println(" 0     Exit Program");
             userChoice = Integer.parseInt(scanner.nextLine());
         }

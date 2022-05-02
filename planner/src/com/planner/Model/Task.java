@@ -6,6 +6,8 @@ public class Task {
     private String taskContent;
     private String taskDueDate;
     private boolean isComplete = false;
+    private boolean isPriorty = false;
+    private boolean isFavorite = false;
 
     // Creates a task
     void createTask(String tn, String tc, String tdd)
@@ -34,34 +36,46 @@ public class Task {
     }
 
     // Sets the task to be complete
-    void markTaskComplete()
+    public void markTaskComplete()
     {
         isComplete = true;
     }
 
     // Sets the task to be incomplete
-    void markTaskIncomplete()
+    public void markTaskIncomplete()
     {
         isComplete = false;
     }
 
+    //Set the task to be a favorite
+    public void markTaskAsFavorite() { isFavorite = true;}
+
+    //Remove the task as a favorite
+    public void unmarkTaskAsFavorite() { isFavorite = false;}
+
+    //Set the task to be a priority
+    public void markTaskAsPriority() { isPriorty = true;}
+
+    //Remove the task as a priority
+    public void unmarkTaskAsPriority() { isPriorty = false;}
+
     // Getters
-    String getTaskName()
+    public String getTaskName()
     {
         return taskName;
     }
 
-    String getTaskContent()
+    public String getTaskContent()
     {
         return taskContent;
     }
 
-    String getTaskDueDate()
+    public String getTaskDueDate()
     {
         return taskDueDate;
     }
 
-    boolean getIsComplete()
+    public boolean getIsComplete()
     {
         return isComplete;
     }

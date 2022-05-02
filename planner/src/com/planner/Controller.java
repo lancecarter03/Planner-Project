@@ -1,12 +1,16 @@
 package com.planner;
 
-import com.google.gson.*;
-
-import com.planner.Model.*;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.planner.Model.Account;
+import com.planner.Model.Task;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Controller {
@@ -88,6 +92,23 @@ public class Controller {
         model.editTask(taskInfo, toEdit);
     }
 
+    public static boolean deleteTask(String deleteChoice) {
+        ArrayList<Task> listOfTasks = Account.getTaskList();
+        Iterator<Task> iterator = listOfTasks.iterator();
+        Task check = iterator.next();
+        while(iterator.hasNext()) {
+            if(!check.getTaskName().equals(deleteChoice)) {
+                check = iterator.next();
+            }
+        }
+        if(check.getTaskName().equals(deleteChoice)) {
+            listOfTasks.remove(check);
+            Account.setTaskList(listOfTasks);
+            return true;
+        }
+        return false;
+    }
+
     // Pass completion to Model
     public void markTaskComplete()
     {
@@ -98,6 +119,74 @@ public class Controller {
     public void markTaskIncomplete()
     {
         model.markTaskIncomplete();
+    }
+
+    public boolean markTaskFavorite(String taskChoice) {
+        ArrayList<Task> listOfTasks = Account.getTaskList();
+        Iterator<Task> iterator = listOfTasks.iterator();
+        Task check = iterator.next();
+        while(iterator.hasNext()) {
+            if(!check.getTaskName().equals(taskChoice)) {
+                check = iterator.next();
+            }
+        }
+        if(check.getTaskName().equals(taskChoice)) {
+            check.markTaskAsFavorite();
+            Account.setTaskList(listOfTasks);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean unmarkTaskFavorite(String taskChoice) {
+        ArrayList<Task> listOfTasks = Account.getTaskList();
+        Iterator<Task> iterator = listOfTasks.iterator();
+        Task check = iterator.next();
+        while(iterator.hasNext()) {
+            if(!check.getTaskName().equals(taskChoice)) {
+                check = iterator.next();
+            }
+        }
+        if(check.getTaskName().equals(taskChoice)) {
+            check.unmarkTaskAsFavorite();
+            Account.setTaskList(listOfTasks);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean markTaskPriority(String taskChoice) {
+        ArrayList<Task> listOfTasks = Account.getTaskList();
+        Iterator<Task> iterator = listOfTasks.iterator();
+        Task check = iterator.next();
+        while(iterator.hasNext()) {
+            if(!check.getTaskName().equals(taskChoice)) {
+                check = iterator.next();
+            }
+        }
+        if(check.getTaskName().equals(taskChoice)) {
+            check.markTaskAsPriority();
+            Account.setTaskList(listOfTasks);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean umarkTaskPriority(String taskChoice) {
+        ArrayList<Task> listOfTasks = Account.getTaskList();
+        Iterator<Task> iterator = listOfTasks.iterator();
+        Task check = iterator.next();
+        while(iterator.hasNext()) {
+            if(!check.getTaskName().equals(taskChoice)) {
+                check = iterator.next();
+            }
+        }
+        if(check.getTaskName().equals(taskChoice)) {
+            check.unmarkTaskAsPriority();
+            Account.setTaskList(listOfTasks);
+            return true;
+        }
+        return false;
     }
 
     // Pass reminder info to Model
