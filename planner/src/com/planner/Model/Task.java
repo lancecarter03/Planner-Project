@@ -19,19 +19,19 @@ public class Task {
 
     // Edits attributes of the task
     void editTask(String taskInfo, char toEdit)
-    {  
+    {
         switch (toEdit) {
             case 'N':
-                    taskName = taskInfo;
-                    break;
+                taskName = taskInfo;
+                break;
             case 'C':
-                    taskContent = taskInfo;
-                    break;
+                taskContent = taskInfo;
+                break;
             case 'D':
-                    taskDueDate = taskInfo;
-                    break;
+                taskDueDate = taskInfo;
+                break;
             default:
-                    break;
+                break;
         }
     }
 
